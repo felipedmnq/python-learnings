@@ -1,0 +1,31 @@
+{
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=E0401", "--disable=C0115", "--disable=C0116", "--disable=C0114",
+        "--disable=C0103"
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.pylintCategorySeverity.convention": "Error",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.linting.enabled": false,
+    "editor.inlineSuggest.enabled": true,
+    "editor.snippetSuggestions": "bottom",
+    "editor.renderWhitespace": "all",
+    "python.formatting.provider": "black",
+    "autoDocstring.docstringFormat": "numpy-notypes",
+    "python.formatting.blackPath": "/Library/Frameworks/Python.framework/Versions/3.10/bin/black",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.external.osxExec": "iTerm.app",
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "hediet.vscode-drawio.resizeImages": null,
+    "redhat.telemetry.enabled": false,
+    "files.associations": {
+        "*.sql": "jinja-sql"
+    },
+    "editor.rulers": [
+        94
+    ]
+}
