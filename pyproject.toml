@@ -9,6 +9,9 @@ packages = [{include = "python_learnings"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 pymongo = "^4.3.3"
+pre-commit = "^3.3.3"
+sqlalchemy = "^2.0.17"
+pytest = "^7.4.0"
 
 
 [build-system]
