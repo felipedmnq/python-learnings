@@ -21,3 +21,6 @@ class User(CustomBaseModel):
 class Users:
     def __init__(self, user: User) -> None:
         self.user = user
+
+    def test():
+        pass
