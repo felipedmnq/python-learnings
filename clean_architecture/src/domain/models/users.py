@@ -8,12 +8,8 @@ class CustomBaseModel(BaseModel):
 
 class User(CustomBaseModel):
     id: int
-    first_name: constr(
-        strip_whitespace=True, strict=True, min_length=2, curtail_length=50
-    )
-    last_name: constr(
-        strip_whitespace=True, strict=True, min_length=2, curtail_length=50
-    )
+    first_name: constr(strip_whitespace=True, strict=True, min_length=2, max_length=50)
+    last_name: constr(strip_whitespace=True, strict=True, min_length=2, max_length=50)
     age: conint(gt=0, lt=150)
     email: EmailStr
 
@@ -21,6 +17,3 @@ class User(CustomBaseModel):
 class Users:
     def __init__(self, user: User) -> None:
         self.user = user
-
-    def test():
-        pass

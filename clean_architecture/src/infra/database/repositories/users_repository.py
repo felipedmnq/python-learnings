@@ -1,8 +1,9 @@
+from src.data.interfaces.users_repo_interface import UsersRepoInterface
 from src.infra.database.connection.db_connection import DBConnectionHandler
 from src.infra.database.entities.users import Users
 
 
-class UsersRepository:
+class UsersRepository(UsersRepoInterface):
     @classmethod
     def insert_user(cls, first_name: str, last_name: str, age: int, email: str) -> None:
         with DBConnectionHandler() as db_connection:
@@ -18,7 +19,7 @@ class UsersRepository:
                 raise error
 
     @classmethod
-    def select_user(cls, first_name: str) -> Users:
+    def select_user(cls, first_name: str) -> list[Users]:
         with DBConnectionHandler() as db_connection:
             try:
                 user = (
