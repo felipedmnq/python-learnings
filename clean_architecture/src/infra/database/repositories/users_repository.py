@@ -1,4 +1,5 @@
 from src.data.interfaces.users_repo_interface import UsersRepoInterface
+from src.domain.models.users import User as UserModel
 from src.infra.database.connection.db_connection import DBConnectionHandler
 from src.infra.database.entities.users import Users
 
@@ -8,9 +9,7 @@ class UsersRepository(UsersRepoInterface):
     def insert_user(cls, first_name: str, last_name: str, age: int, email: str) -> None:
         with DBConnectionHandler() as db_connection:
             try:
-                new_user = Users(
-                    first_name=first_name, last_name=last_name, age=age, email=email
-                )
+                new_user = Users(UserModel(first_name, last_name, age, email))
                 db_connection.session.add(new_user)
                 db_connection.session.commit()
 

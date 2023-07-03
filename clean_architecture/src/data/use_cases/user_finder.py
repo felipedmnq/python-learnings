@@ -7,6 +7,17 @@ class UserFinder(UserFinderInterface):
     def __init__(self, users_repo: UsersRepoInterface) -> None:
         self.__users_repo = users_repo
 
-    def find_user(self, user_id: int) -> dict:
-        user = self.user_repo.find_user(user_id)
-        return user
+    def find_user(self, first_name: str) -> dict:
+        if not first_name.isalpha():
+            raise TypeError("First name must contain only letters.")
+
+        users = self.__users_repo.select_user(first_name)
+
+        if users == []:
+            raise KeyError(f"User with first name '{first_name}' not found.")
+
+        return {
+            "type": "Users",
+            "count": len(users),
+            "attributes": [user.user for user in users],
+        }

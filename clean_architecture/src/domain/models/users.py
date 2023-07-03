@@ -1,12 +1,9 @@
-from pydantic import BaseModel, EmailStr, Extra, conint, constr
+from pydantic import BaseModel, ConfigDict, EmailStr, conint, constr
 
 
-class CustomBaseModel(BaseModel):
-    class Config:
-        extra = Extra.forbid
+class User(BaseModel):
+    model_config = ConfigDict(extra="forbid")
 
-
-class User(CustomBaseModel):
     id: int
     first_name: constr(strip_whitespace=True, strict=True, min_length=2, max_length=50)
     last_name: constr(strip_whitespace=True, strict=True, min_length=2, max_length=50)
