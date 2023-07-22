@@ -2,7 +2,7 @@ from sqlalchemy import Column, DateTime, Integer, String
 from src.infra.database.connection.base import Base
 
 
-class Users(Base):
+class UserModel(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, autoincrement=True)

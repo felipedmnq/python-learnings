@@ -1,6 +1,9 @@
 import pytest
 from sqlalchemy import text
+from src.domain.models.users import User
 from src.infra.database.connection.db_connection import DBConnectionHandler
+
+from pydantic import ValidationError
 
 from .users_repository import UsersRepository
 
@@ -13,12 +16,17 @@ def test_insert_user():
     """Should insert user into database"""
 
     mock_data = {
+        "id_": 1001,
         "first_name": "first_name",
         "last_name": "last_name",
         "age": 99,
         "email": "test@test.com",
     }
-    UsersRepository.insert_user(**mock_data)
+    user = User(**mock_data)
+    try:
+        UsersRepository.insert_user(user)
+    except ValidationError as error:
+        print(f"\033[96m{error.json()}\033[0m")
     query = text(
         f"""
         SELECT * FROM users \
@@ -38,7 +46,6 @@ def test_insert_user():
     assert registry.email == mock_data["email"]
 
     connection.execute(text(f"DELETE FROM users WHERE id = {registry.id}"))
-    connection.commit()
 
 
 @pytest.mark.skip(reason="Sensitive test.")

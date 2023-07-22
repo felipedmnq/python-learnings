@@ -1,17 +1,15 @@
 from abc import ABC, abstractmethod
 
-from src.domain.models.users import Users
+from src.domain.models.users import User
 
 
 class UsersRepoInterface(ABC):
     @abstractmethod
-    def insert_user(
-        self, first_name: str, last_name: str, age: int, email: str
-    ) -> Users:
+    def insert_user(self, user: User) -> None:
         raise NotImplementedError("get_user method must be implemented.")
 
     @abstractmethod
-    def select_user(self, first_name: str) -> list[Users]:
+    def select_user(self, first_name: str) -> list[User]:
         raise NotImplementedError("get_users method must be implemented.")
 
     # @abstractmethod
