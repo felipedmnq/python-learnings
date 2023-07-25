@@ -14,6 +14,8 @@ class UserRegisterController(ControllerInterface):
         age = http_request.body["age"]
         email = http_request.body["email"]
 
+        print(f"\033[91m{first_name}\033[0m")
+
         response = self.__user_register.register_user(first_name, last_name, age, email)
 
         return HTTPResponse(status_code=200, body={"data": response})

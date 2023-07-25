@@ -24,7 +24,7 @@ def test_handle():
     #         **http_request_mock.body,
     #     },
     # }
-
-    response = user_register_controller.handle(http_request_mock)
+    print(f"\033[033m{http_request_mock.body}\033[0m")
+    response = user_register_controller.handle(http_request_mock.body)
 
     print(f"\033[033m{response}\033[0m")
