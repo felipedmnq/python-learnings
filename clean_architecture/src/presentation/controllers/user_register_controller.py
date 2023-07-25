@@ -1,3 +1,5 @@
+from loguru import logger
+from src.domain.models.users import User
 from src.domain.use_cases.user_registry import UserRegistryInterface
 from src.presentation.http_types.http_request import HTTPRequest
 from src.presentation.http_types.http_response import HTTPResponse
@@ -14,8 +16,8 @@ class UserRegisterController(ControllerInterface):
         age = http_request.body["age"]
         email = http_request.body["email"]
 
-        print(f"\033[91m{first_name}\033[0m")
+        user = User(first_name=first_name, last_name=last_name, age=age, email=email)
 
-        response = self.__user_register.register_user(first_name, last_name, age, email)
+        response = self.__user_register.register_user(user)
 
         return HTTPResponse(status_code=200, body={"data": response})
