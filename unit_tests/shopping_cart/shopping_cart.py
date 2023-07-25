@@ -15,4 +15,4 @@ class ShoppingCart:
         return self.items
 
     def get_cart_total_price(self, price_map: dict[str, float]) -> float:
-        pass
+        return sum([price_map.get(item) for item in self.items])

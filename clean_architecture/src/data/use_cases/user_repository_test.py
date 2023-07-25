@@ -1,3 +1,4 @@
+import pytest
 from src.domain.models.users import User
 from src.infra.database.tests.users_repository_mock import UsersRepositorySpy
 
@@ -22,11 +23,5 @@ def test_register_user():
 
 
 def test_register_validation_error():
-    users_repository = UsersRepositorySpy()
-    user_register = UserRegister(users_repository)
-
-    try:
-        mock_user = User(first_name=123, last_name="Doe", age=30, email="test@test.com")
-    except ValidationError as error:
-        error_dict = error.errors()[0]
-        assert error_dict["msg"] == "str type expected"
+    with pytest.raises(ValidationError):
+        User(first_name=123, last_name="Doe", age=30, email="test@test.com")

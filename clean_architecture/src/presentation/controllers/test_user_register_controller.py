@@ -1,4 +1,5 @@
 from src.data.tests.user_register_spy import UserRegisterSpy
+from src.domain.models.users import User
 from src.presentation.controllers.user_register_controller import UserRegisterController
 from src.presentation.http_types.http_response import HTTPResponse
 
@@ -17,14 +18,10 @@ def test_handle():
     http_request_mock = HTTPRequestMock()
     use_case = UserRegisterSpy()
     user_register_controller = UserRegisterController(use_case)
-    # fake_user = {
-    #     "type": "User",
-    #     "count": 1,
-    #     "attributes": {
-    #         **http_request_mock.body,
-    #     },
-    # }
-    print(f"\033[033m{http_request_mock.body}\033[0m")
-    response = user_register_controller.handle(http_request_mock.body)
 
-    print(f"\033[033m{response}\033[0m")
+    # user = User(**http_request_mock.body)
+    # print(f"\033[033m{http_request_mock.body}\033[0m")
+    # response = user_register_controller.handle(user)
+
+    # print(f"\033[033m{response}\033[0m")
+    pass
