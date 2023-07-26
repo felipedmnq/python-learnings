@@ -4,6 +4,7 @@ from flask import Blueprint, jsonify, request
 from loguru import logger
 from src.domain.models.users import User
 from src.main.adapters.request_adapter import request_adapter
+from src.main.adapters.response_adapter import response_adapter
 from src.main.composers.user_finder_composer import user_finder_composer
 from src.main.composers.user_register_composer import user_resgiter_composer
 
@@ -12,7 +13,10 @@ user_routes_bp = Blueprint("user_routes", __name__)
 
 @user_routes_bp.route("/user/find", methods=["GET"])
 def find_user():
-    http_response = request_adapter(request, user_finder_composer())
+    logger.info(f"Finding user {request.args.to_dict()}")
+    http_response = response_adapter(request, controller=user_finder_composer())
+    logger.info(f"Response - {http_response.body}")
+
     return jsonify(http_response.body), http_response.status_code
 
 

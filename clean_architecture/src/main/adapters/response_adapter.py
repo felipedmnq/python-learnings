@@ -7,11 +7,9 @@ from src.presentation.http_types.http_request import HTTPRequest
 from src.presentation.http_types.http_response import HTTPResponse
 
 
-def request_adapter(
-    request: flask_request, formated_body: dict = None, controller: Callable = None
-) -> HTTPResponse:
+def response_adapter(request: flask_request, controller: Callable) -> HTTPResponse:
     http_request = HTTPRequest(
-        body=formated_body,
+        body=request,
         headers=request.headers,
         query_params=request.args,
         path_params=request.view_args,

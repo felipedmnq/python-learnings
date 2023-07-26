@@ -17,7 +17,7 @@ class UserFinder(UserFinderInterface):
         return {
             "type": "Users",
             "count": len(users),
-            "attributes": [user for user in users],
+            "attributes": [str(user) for user in users],
         }
 
     def __search_user(self, first_name: str) -> list:
