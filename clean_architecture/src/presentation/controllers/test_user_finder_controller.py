@@ -5,10 +5,10 @@ from src.presentation.http_types.http_response import HTTPResponse
 
 class HTTPRequestMock:
     def __init__(self) -> None:
-        self.path_params = {"first_name": "John"}
+        self.query_params = {"first_name": "John"}
 
 
-def test_handle():
+def test_handle_return_correct_response():
     http_request_mock = HTTPRequestMock()
     use_case = UserFinderSpy()
     user_finder_controller = UserFinderController(use_case)

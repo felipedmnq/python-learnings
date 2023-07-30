@@ -19,9 +19,6 @@ def test_handle():
     use_case = UserRegisterSpy()
     user_register_controller = UserRegisterController(use_case)
 
-    # user = User(**http_request_mock.body)
-    # print(f"\033[033m{http_request_mock.body}\033[0m")
-    # response = user_register_controller.handle(user)
+    response = user_register_controller.handle(http_request_mock)
 
-    # print(f"\033[033m{response}\033[0m")
-    pass
+    print(f"\033[033m{response}\033[0m")

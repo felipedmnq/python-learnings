@@ -15,9 +15,12 @@ user_routes_bp = Blueprint("user_routes", __name__)
 def find_user():
     logger.info(f"Finding user {request.args.to_dict()}")
     http_response = response_adapter(request, controller=user_finder_composer())
-    logger.info(f"Response - {http_response.body}")
+    if http_response.status_code == 200:
+        logger.info(f"Response - {http_response.body}")
+    else:
+        logger.error(f"Response - {http_response.body}")
 
-    return jsonify(http_response.body), http_response.status_code
+    return jsonify(str(http_response.body)), http_response.status_code
 
 
 @user_routes_bp.route("/user", methods=["POST"])
@@ -26,5 +29,9 @@ def register_user():
     logger.info(f"Registering user...{user_data}")
 
     http_response = request_adapter(request, user_data, user_resgiter_composer())
+    if http_response.status_code == 200:
+        logger.success(f"Response - {http_response.body}")
+    else:
+        logger.error(f"Response - {http_response.body}")
 
     return http_response.body, http_response.status_code

@@ -10,7 +10,8 @@ class UserFinderController(ControllerInterface):
         self.__user_finder = user_finder
 
     def handle(self, http_request: HTTPRequest) -> HTTPResponse:
-        params = http_request.query_params.to_dict()
+        params = http_request.query_params
+        # params = http_request.query_params.to_dict()
         first_name = params["first_name"]
         response = self.__user_finder.find_user(first_name)
         return HTTPResponse(status_code=200, body={"data": response})

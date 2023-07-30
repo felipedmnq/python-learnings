@@ -1,5 +1,7 @@
+from loguru import logger
 from src.data.interfaces.users_repo_interface import UsersRepoInterface
 from src.domain.use_cases.user_finder import UserFinderInterface
+from src.errors.types import HttpBadRequestError, HttpNotFoundError
 from src.infra.database.repositories.users_repository import UsersRepository
 
 
@@ -10,20 +12,21 @@ class UserFinder(UserFinderInterface):
     @classmethod
     def __validate_name(cls, first_name: str) -> None:
         if not first_name.isalpha():
-            raise TypeError("First name must contain only letters.")
+            raise HttpBadRequestError("First name must contain only letters.")
 
     @classmethod
     def __format_response(cls, users: list) -> dict:
+        logger.info(f"User {users} found.")
         return {
             "type": "Users",
             "count": len(users),
-            "attributes": [str(user) for user in users],
+            "attributes": [user for user in users],
         }
 
     def __search_user(self, first_name: str) -> list:
         users = self.__users_repo.select_user(first_name)
         if users == []:
-            raise KeyError(f"User with first name '{first_name}' not found.")
+            raise HttpNotFoundError(f"User with first name '{first_name}' not found.")
 
         return users
 

@@ -3,4 +3,4 @@ class UserRegisterSpy:
         self.params = {}
 
     def register_user(self, params: dict) -> None:
-        return {"statatus_code": 200, "body": {**params}}
+        return {"statatus_code": 200, "body": {str(params)}}

@@ -65,6 +65,122 @@ Fixtures define the steps and data that constitute the arrange phase of a test (
 
 The services, state, or other operating environments set up by fixtures are accessed by test functions through arguments. For each fixture used by a test function there is typically a parameter (named after the fixture) in the test function’s definition."
 
+- To use fixtures it is applied a decorator - `@pytest.fixture` to the function that will be a fixture and after that pass the fixtured function name as an argument to the function that will be using the fixture.
+
+```
+@pytest.fixture
+def some_fixture():
+    pass
+    
+def use_fixture(some_fixture):
+    pass
+```
+- It is also possible to use the fixture with `@pytest.mark.usefixtures("some_fixture")`. In this case the fixture name does not need to be passed to the function as an argument.
+```
+@pytest.mark.usefixtures("some_fixture")
+def use_fixture():
+    pass
+```
+
+- It is possible to set the `autouse=True` anrgument and "automatically" use the fixture for the following test functions.
+
+- To set an alias to the fixture name - `@pytest.fixture(name="<alias>")`.
+
+```
+@pytest.fixture(name="fixture_name")
+def some_fixture():
+    pass
+    
+def use_fixture(fixture_name):
+    pass
+
+```
+
+- To set multiple values to a fixture use `@pytest.fixture(params=(1, 2, 3, 4))` and the `request` method.
+
+```
+@pytest.fixture(params=(1, 2, 3, 4))
+def some_fixture_use_params(request):
+    yield request.params + 2
+    
+def use_fixture(some_fixture_use_params):
+    pass
+```
+
+#### Skip tests
+
+- `@pytest.mark.skip` - The function or class decorated with the skip method will not be tested.
+- It is also possible to use the `pytest.skil()` method inside the test function body to skip the test during runtime.
+- The `reason` argument is used to document why the test is being skipped.
+
+```
+@pytest.fixture(params=[1, 2, 3, 4])
+def numbers(request):
+    return request.param
+
+@pytest.mark.skip(reason="Mehotod not implemented yet.")
+def test_multiply_returns_multiplied_number(numbers):
+    assert multiply(numbers) == numbers * numbers
+
+def test_square_returns_squared_number(numbers):
+    pytest.skip()
+    assert square(numbers) == numbers * numbers
+```
+
+- With the decorator `pytest.mark.skipif(<boolean condition>)` it is possible to conditionally skip tests.
+
+#### XFail tests.
+
+- Useful for testing failure code.
+- With the `@pytest.mark.xfail(reason="")` - you set the text to be expected to fail.
+- Also works wit `pytest.xfail()` method inside the code body.
+- Its also possible to use conditions with `@pytest.mark.xfail(<boolean condition>, reason="")` - the test will be expected to fail only if matches the condition.
+- With the `raises=Exception` argument we can provide specific Exception errors that we expect to be raised during this test - `@pytest.mark.xfail(raises=AssertionError)`
+- The `strict=True` argument means that you are expecting the test to fail and if the test passes, it will fail 🤯 - passing is considered a fail.
+
+```
+@pytest.mark.xfail(raises=NotImplementedError, reason="Mehotod not implemented yet.")
+def test_multiply_returns_multiplied_number(numbers_1, numbers_2, expected_result):
+    assert multiply(numbers_1, numbers_2) == expected_result
+```
+
+#### Parametrizing tests
+
+- The `@pytest.mark.parametrize("<args>", [<parameters>])` is used to parametrize tests to run for multiple parameters.
+- It is possbile to use multiple paramnetrize decorators to have not dependent parameters - in this case it runs all possible combinations from all parameters.
+- It is possible to further controle the arguments passed to the parametrize decorator using `pytest.param()` - it is possible to set one especific param to be skipped - `@pytest.mark.parametrize("numbers", [1, 2, pytest.param(3, marks=pytest.mark.skip), 4, 5])` - here it is also possible to pass a list of marks.
+- It is also possible to give logical names to the parameters as an alias - `pytest.param(-1, id="negative")`. 
+
+```
+@pytest.mark.parametrize("numbers_1,numbers_2,expected_result", [(1, 2, 2), (2, 4, 8)])
+def test_multiply_returns_multiplied_number(numbers_1, numbers_2, expected_result):
+    assert multiply(numbers_1, numbers_2) == expected_result
+
+
+@pytest.mark.parametrize("base", [1, 2])
+@pytest.mark.parametrize("exponent", [4, 5])
+def test_pow_returns_exponentiated_number(base, exponent):
+    assert pow_(base, exponent) == math.pow(base, exponent)
+
+@pytest.mark.parametrize(
+    "numbers",
+    [1, 2, pytest.param(3, marks=pytest.mark.skip), 4, 5],
+)
+def test_square_returns_multiplied_number(numbers):
+    assert square(numbers) == numbers**2
+
+@pytest.mark.parametrize(
+    "numbers",
+    [
+        pytest.param(-1, id="negative"),
+        pytest.param(0, id="zero"),
+    ],
+)
+def test_square_returns_multiplied_number(numbers):
+    assert square(numbers) == numbers**2
+```
+
+
 #### Mock dependencies
 
 - Create fake behaviors to be used in unit tests.
@@ -83,9 +199,14 @@ Additionally, mock provides a patch() decorator that handles patching module and
 
 - `pytest` - runs all the unit tests it can find.
 - `pytest <test file name>.py` - runs all tests in this specific file.
+- `pytest <test file name>.py -k <keyword>` - looks for test functions with the `keyword` in the name.
 - `pytest <test file name>.py::<test function to be tested>` - runs a specific test fuction inside a specific test file.
+- `pytest <test file name>.py::<test class to be tested>` - runs a specific test class inside a specific test file.
+- `pytest <test file name>.py::<test class to be tested>::<test function to be tested>` - runs a specific test function in a specific test class inside a specific test file.
 - `pytest -s <test file name>.py::<test function to be tested>` - to show the outputs (prints) of the test.
 - `pytest -v <test file name>.py::<test function to be tested>` - to have the test verbose.
+- Display all tests - `pytest --collectonly`.
+- `pytest <test file name>.py> -rs` - Show extra test summary info.
 
 
 
