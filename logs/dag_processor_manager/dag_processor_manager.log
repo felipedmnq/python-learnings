@@ -1,0 +1,57 @@
+[2023-08-06T15:59:33.266+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T15:59:33.266+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T15:59:33.267+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T15:59:33.267+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T15:59:33.267+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:04:33.352+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:04:33.352+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:09:33.602+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:09:33.604+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:14:34.028+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:14:34.030+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:14:57.553+0200] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-08-06T16:19:18.605+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T16:19:18.605+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T16:19:18.608+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T16:19:18.608+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:19:18.609+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:22:26.587+0200] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-08-06T16:22:44.914+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T16:22:44.915+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T16:22:44.915+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T16:22:44.915+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:22:44.916+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:25:15.226+0200] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-08-06T16:26:13.478+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T16:26:13.478+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T16:26:13.479+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T16:26:13.479+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:26:13.480+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:26:47.208+0200] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-08-06T16:26:57.543+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T16:26:57.543+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T16:26:57.543+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T16:26:57.544+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:26:57.544+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:31:57.914+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:31:57.916+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:36:58.669+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:36:58.671+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:41:32.398+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T16:41:32.399+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T16:41:32.400+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T16:41:32.400+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:41:32.400+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:41:45.248+0200] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-08-06T16:45:17.508+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T16:45:17.509+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T16:45:17.510+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T16:45:17.510+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:45:17.510+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:45:38.404+0200] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2023-08-06T16:51:10.917+0200] {manager.py:487} INFO - Processing files using up to 1 processes at a time 
+[2023-08-06T16:51:10.918+0200] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2023-08-06T16:51:10.919+0200] {manager.py:489} INFO - Checking for new files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags every 300 seconds
+[2023-08-06T16:51:10.919+0200] {manager.py:758} INFO - Searching for files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:51:10.920+0200] {manager.py:761} INFO - There are 0 files in /Users/felipe.vasconcelos/repos/courses/python-learnings/dags
+[2023-08-06T16:53:06.143+0200] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15

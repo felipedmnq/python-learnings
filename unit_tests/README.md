@@ -54,7 +54,7 @@ At its core, the test is ultimately the act and assert steps, with the arrange s
 - The test passes if an exception is raised, in other words, pytest pass the test if the test fails 🤯.
 - `pytest.raises(<Exception type>)`.
 
-#### Pytest.fixtures
+#### Pytest.fixtures - [DOCS](https://docs.pytest.org/en/6.2.x/reference.html#pytest-fixture)
 
 - `pytest.fixtures` - used to avoid repeated code.
 - From docs: 
@@ -107,6 +107,9 @@ def use_fixture(some_fixture_use_params):
     pass
 ```
 
+- To display the available fixtures use `pytest --fixtures <test file>.py`.
+
+
 #### Skip tests
 
 - `@pytest.mark.skip` - The function or class decorated with the skip method will not be tested.
@@ -144,7 +147,7 @@ def test_multiply_returns_multiplied_number(numbers_1, numbers_2, expected_resul
     assert multiply(numbers_1, numbers_2) == expected_result
 ```
 
-#### Parametrizing tests
+#### Parametrizing tests - [DOCS](https://docs.pytest.org/en/6.2.x/parametrize.html)
 
 - The `@pytest.mark.parametrize("<args>", [<parameters>])` is used to parametrize tests to run for multiple parameters.
 - It is possbile to use multiple paramnetrize decorators to have not dependent parameters - in this case it runs all possible combinations from all parameters.
@@ -180,6 +183,9 @@ def test_square_returns_multiplied_number(numbers):
     assert square(numbers) == numbers**2
 ```
 
+#### Conftest
+
+- In the `conftest.py` file you can setup your fixtures and pytest will automatically import it in the test files.
 
 #### Mock dependencies
 
@@ -207,6 +213,7 @@ Additionally, mock provides a patch() decorator that handles patching module and
 - `pytest -v <test file name>.py::<test function to be tested>` - to have the test verbose.
 - Display all tests - `pytest --collectonly`.
 - `pytest <test file name>.py> -rs` - Show extra test summary info.
+- `pytest --fixtures <test file>.py` - display available fixtures.
 
 
 
