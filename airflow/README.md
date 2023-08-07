@@ -46,11 +46,53 @@ The operator determines what will be done. The task implements an operator by de
 
 ## Operators
 
+## Airflow use
 
+* DAG CONFIGS:
+```
+default_args = {
+    "owner": "Felipe",
+    "retries": 5,
+    "retry_delay": timedelta(minutes=2),
+}
+```
+
+* CREATE DAG:
+```
+with DAG(
+    dag_id="AA_first_dag_v2",
+    description="first dag",
+    default_args=default_args,
+    start_date=datetime(2023, 8, 6, 2),
+    schedule_interval="@daily",
+) as dag:
+```
+
+* CREATE TASKS:
+```
+task_1 = BashOperator(task_id="first_task", bash_command="echo 'Hello World!'")
+task_2 = BashOperator(task_id="second_task", bash_command="echo 'second task'")
+task_3 = BashOperator(task_id="third_task", bash_command="echo 'THIRD TASK'")
+```
+
+* SET TASK DEPENDENCIES:
+```
+task_1.set_downstream(task_2)
+task_1.set_downstream(task_3)
+```
+OR
+```
+task_1 >> task_2
+task_1 >> task_3
+```
+OR
+```
+task_1 >> [task_2, task_3]
+```
 ## Commands 
 
 * Init database - `airflow db init`
-* Init local server - `airflow webserver -p 8080`
+* Init local server - `airflow webserver -p <PORT>`
 * Create user - `airflow users create --username admin --firstname firstname --lastname lastname --role Admin --email admin@admin.com`
 * Check DB - `airflow db check`
 * Reset DB - `airflow db reset`
