@@ -21,18 +21,22 @@ The operator determines what will be done. The task implements an operator by de
 
 ### Task lifecycle
 
-* There are in total 11 diffenrent kinds of stages in Airflow.
-    * queued - scheduler sent task to executor to eun on the queue
+* There are different kinds of stages in Airflow.
+    * no_status - scheduler created empty task instance
+    * none - the task has not yet been queued for execution
+    * scheduled - scheduler determined task dependencies to run
+    * queued - scheduler sent task to executor to run and it is waiting for a worker
     * running - worker picked up a task and is now running it
     * success - the task is completed without fails
-    * failed - the task has failed
-    * up_for_retry - the task will schedulled and reruned
-    * up_for_reschedule - the task will be rescheduled avery certain time interval
-    * upstream_failed - the upstream task failed
-    * skipped - the task has been skipped
-    * scheduled - scheduler determined task instance needs to run
-    * no_status - scheduler created empty task instance
-    * shutdown - the task run has been aborted
+    * shutdown - the task run has been aborted when it was running
+    * restarting - the task was requested to restart
+    * failed - the task had an error during execution and has failed
+    * skipped - the task has been skipped due to branching, LatestOnly or similar
+    * upstream_failed - the upstream task failed and the trigger rule says we need it
+    * up_for_retry - the task has failed but has retry attempts left and will be rescheduleed
+    * up_for_reschedule - the task is a Sensor that is in reschedule mode
+    * deferred - the task has been deferred to a trigger
+    * removed - The task has vanished from the DAG since the run started    
 
 ![airfklow-status](airflow/images/airflow_status.png)
 
@@ -44,9 +48,11 @@ The operator determines what will be done. The task implements an operator by de
 
 ![basic-architecture](airflow/images/basic_architecture.png)
 
-## Operators
-
 ## Airflow use
+
+### Bash operator
+
+- `from airflow.operators.bash import BashOperator`
 
 * DAG CONFIGS:
 ```
@@ -89,6 +95,118 @@ OR
 ```
 task_1 >> [task_2, task_3]
 ```
+
+### Python operator
+
+- `from airflow.operators.python import PythonOperator`
+
+- To set the callable to the PythonOperator use `python_callable=<CALLABLE>`
+- To set the callable parameters use `op_kwargs={<dict with args>}`
+
+
+```
+from datetime import datetime, timedelta
+
+from airflow.operators.python import PythonOperator
+
+from airflow import DAG
+
+defaul_args = {
+    "owner": "Felipe",
+    "retries": 5,
+    "retry_delay": timedelta(minutes=2),
+}
+
+
+def greed(name: str, age: int) -> None:
+    print(f"Hello, my name is {name} and I am {age} years old!")
+
+
+with DAG(
+    default_args=defaul_args,
+    dag_id="dag_python_operator_v2",
+    description="dag python operator",
+    start_date=datetime(2023, 8, 7, 2),
+    schedule_interval="@daily",
+) as dag:
+    python_task_01 = PythonOperator(
+        task_id="python_task_01",
+        python_callable=greed,
+        op_kwargs={"name": "Felipe", "age": 25},
+    )
+    python_task_01
+```
+
+### Exchange data between tasks
+
+- Values returned by tasks are stored in `XComs`
+- To pass values through airflow it is necessary to use a `TaskInstance` object and the `xcom_pull` method.
+- It is also necessary to set the `key` and `value`.
+- To retieve values from `XComs` it is necessary to use a `TaskInstance` object and the `xcom_push` method.
+- It is also necessary to set the `task_ids` (the task that is setting the arguments) and `key`.
+- WARNING - the max size of a XCom is 48KB - DO NOT WORKS WITH LARGE DATA
+
+```
+from datetime import datetime, timedelta
+
+from airflow.models.taskinstance import TaskInstance
+from airflow.operators.python import PythonOperator
+
+from airflow import DAG
+
+defaul_args = {
+    "owner": "Felipe",
+    "retries": 5,
+    "retry_delay": timedelta(minutes=2),
+}
+
+
+def return_name(first_name: str, last_name: str, ti: TaskInstance) -> str:
+    ti.xcom_push(key="first_name", value=first_name)
+    ti.xcom_push(key="last_name", value=last_name)
+
+
+def return_age(age: int, ti: TaskInstance) -> int:
+    ti.xcom_push(key="age", value=age)
+
+
+def greed(ti: TaskInstance) -> None:
+    first_name = ti.xcom_pull(task_ids="return_name", key="first_name")
+    last_name = ti.xcom_pull(task_ids="return_name", key="last_name")
+    age = ti.xcom_pull(task_ids="return_age", key="age")
+
+    print(f"Hello, my name is {first_name} {last_name} and I am {age} years old!")
+
+
+with DAG(
+    default_args=defaul_args,
+    dag_id="dag_python_operator_v7",
+    description="dag python operator",
+    start_date=datetime(2023, 8, 7, 2),
+    schedule_interval="@daily",
+) as dag:
+    python_task_01 = PythonOperator(
+        task_id="greed",
+        python_callable=greed,
+    )
+
+    python_task_02 = PythonOperator(
+        task_id="return_name",
+        python_callable=return_name,
+        op_kwargs={"first_name": "Felipe", "last_name": "Felix"},
+    )
+
+    python_task_03 = PythonOperator(
+        task_id="return_age",
+        python_callable=return_age,
+        op_kwargs={"age": 25},
+    )
+
+    [python_task_02, python_task_03] >> python_task_01
+```
+
+
+
 ## Commands 
 
 * Init database - `airflow db init`

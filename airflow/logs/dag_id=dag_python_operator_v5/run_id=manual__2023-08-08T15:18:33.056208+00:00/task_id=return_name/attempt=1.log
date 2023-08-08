@@ -1,0 +1,20 @@
+[2023-08-08T15:18:36.014+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_python_operator_v5.return_name manual__2023-08-08T15:18:33.056208+00:00 [queued]>
+[2023-08-08T15:18:36.042+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_python_operator_v5.return_name manual__2023-08-08T15:18:33.056208+00:00 [queued]>
+[2023-08-08T15:18:36.044+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 6
+[2023-08-08T15:18:36.102+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): return_name> on 2023-08-08 15:18:33.056208+00:00
+[2023-08-08T15:18:36.134+0000] {standard_task_runner.py:57} INFO - Started process 1685 to run task
+[2023-08-08T15:18:36.171+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_python_operator_v5', 'return_name', 'manual__2023-08-08T15:18:33.056208+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/dag_python_op.py', '--cfg-path', '/tmp/tmp2rrxz6r6']
+[2023-08-08T15:18:36.188+0000] {standard_task_runner.py:85} INFO - Job 19: Subtask return_name
+[2023-08-08T15:18:36.366+0000] {task_command.py:410} INFO - Running <TaskInstance: dag_python_operator_v5.return_name manual__2023-08-08T15:18:33.056208+00:00 [running]> on host 9d880a75227b
+[2023-08-08T15:18:36.645+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Felipe' AIRFLOW_CTX_DAG_ID='dag_python_operator_v5' AIRFLOW_CTX_TASK_ID='return_name' AIRFLOW_CTX_EXECUTION_DATE='2023-08-08T15:18:33.056208+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-08-08T15:18:33.056208+00:00'
+[2023-08-08T15:18:36.651+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+TypeError: return_name() missing 1 required positional argument: 'name'
+[2023-08-08T15:18:36.705+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_python_operator_v5, task_id=return_name, execution_date=20230808T151833, start_date=20230808T151836, end_date=20230808T151836
+[2023-08-08T15:18:36.756+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 19 for task return_name (return_name() missing 1 required positional argument: 'name'; 1685)
+[2023-08-08T15:18:36.827+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2023-08-08T15:18:36.936+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

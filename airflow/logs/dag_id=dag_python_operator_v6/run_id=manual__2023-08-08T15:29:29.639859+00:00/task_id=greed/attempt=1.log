@@ -1,0 +1,20 @@
+[2023-08-08T15:29:33.734+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_python_operator_v6.greed manual__2023-08-08T15:29:29.639859+00:00 [queued]>
+[2023-08-08T15:29:33.751+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_python_operator_v6.greed manual__2023-08-08T15:29:29.639859+00:00 [queued]>
+[2023-08-08T15:29:33.753+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 6
+[2023-08-08T15:29:33.778+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): greed> on 2023-08-08 15:29:29.639859+00:00
+[2023-08-08T15:29:33.789+0000] {standard_task_runner.py:57} INFO - Started process 2099 to run task
+[2023-08-08T15:29:33.798+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_python_operator_v6', 'greed', 'manual__2023-08-08T15:29:29.639859+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/dag_python_op.py', '--cfg-path', '/tmp/tmpt3fqtxhb']
+[2023-08-08T15:29:33.803+0000] {standard_task_runner.py:85} INFO - Job 35: Subtask greed
+[2023-08-08T15:29:33.895+0000] {task_command.py:410} INFO - Running <TaskInstance: dag_python_operator_v6.greed manual__2023-08-08T15:29:29.639859+00:00 [running]> on host 9d880a75227b
+[2023-08-08T15:29:34.037+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Felipe' AIRFLOW_CTX_DAG_ID='dag_python_operator_v6' AIRFLOW_CTX_TASK_ID='greed' AIRFLOW_CTX_EXECUTION_DATE='2023-08-08T15:29:29.639859+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-08-08T15:29:29.639859+00:00'
+[2023-08-08T15:29:34.041+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+TypeError: greed() missing 1 required positional argument: 'age'
+[2023-08-08T15:29:34.059+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_python_operator_v6, task_id=greed, execution_date=20230808T152929, start_date=20230808T152933, end_date=20230808T152934
+[2023-08-08T15:29:34.079+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 35 for task greed (greed() missing 1 required positional argument: 'age'; 2099)
+[2023-08-08T15:29:34.132+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2023-08-08T15:29:34.178+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
