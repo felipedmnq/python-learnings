@@ -205,7 +205,21 @@ with DAG(
     [python_task_02, python_task_03] >> python_task_01
 ```
 
+## Schedule DAGs with Cron
 
+#### Cron expression Preset
+
+- `none` - No schedule - exclusivelly for "externally triggered" DAGs
+- `@once` - Schedule only once
+- `@hourly` - Run once an hour at the beggining of the hour
+- `@daily` - Run once a day at midnight
+- `@weekly` - Run once a week at midnight on Sunday
+- `@monthly` - Run once a month at midnight of the first day of the month
+- `@yearly` - Run once a year at midnight of January 1st.
+
+## TaskFlow API
+
+- 
 
 ## Commands 
 
@@ -217,5 +231,6 @@ with DAG(
 * Init scheduler - `airflow scheduler`
 * Get database path - `airflow config get-value database sql_alchemy_conn`
 * Database connection EnvVar - `AIRFLOW__DATABASE__SQL_ALCHEMY_CONN`
+* Run DAGs "in the past" with `backfill` - `airflow dags backfill -s <START DATE - YYYY-MM-DD> -e <END DATE - YYYY-MM-DD> <DAG ID>`
 
 

@@ -1,0 +1,14 @@
+[2023-08-09T00:34:31.689+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_python_operator_v7.greed scheduled__2023-08-08T00:00:00+00:00 [queued]>
+[2023-08-09T00:34:32.065+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_python_operator_v7.greed scheduled__2023-08-08T00:00:00+00:00 [queued]>
+[2023-08-09T00:34:32.071+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 6
+[2023-08-09T00:34:33.581+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): greed> on 2023-08-08 00:00:00+00:00
+[2023-08-09T00:34:33.935+0000] {standard_task_runner.py:57} INFO - Started process 7423 to run task
+[2023-08-09T00:34:34.297+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'dag_python_operator_v7', 'greed', 'scheduled__2023-08-08T00:00:00+00:00', '--job-id', '45', '--raw', '--subdir', 'DAGS_FOLDER/dag_python_op.py', '--cfg-path', '/tmp/tmpau26nkbj']
+[2023-08-09T00:34:34.334+0000] {standard_task_runner.py:85} INFO - Job 45: Subtask greed
+[2023-08-09T00:34:37.151+0000] {task_command.py:410} INFO - Running <TaskInstance: dag_python_operator_v7.greed scheduled__2023-08-08T00:00:00+00:00 [running]> on host 9d880a75227b
+[2023-08-09T00:34:39.412+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Felipe' AIRFLOW_CTX_DAG_ID='dag_python_operator_v7' AIRFLOW_CTX_TASK_ID='greed' AIRFLOW_CTX_EXECUTION_DATE='2023-08-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-08-08T00:00:00+00:00'
+[2023-08-09T00:34:39.831+0000] {logging_mixin.py:150} INFO - Hello, my name is Felipe Felix and I am 25 years old!
+[2023-08-09T00:34:39.846+0000] {python.py:183} INFO - Done. Returned value was: None
+[2023-08-09T00:34:39.974+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=dag_python_operator_v7, task_id=greed, execution_date=20230808T000000, start_date=20230809T003431, end_date=20230809T003439
+[2023-08-09T00:34:40.335+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2023-08-09T00:34:40.491+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
